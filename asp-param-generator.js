@@ -5,7 +5,7 @@ let daily = {
 }
 
 
-// Fetches the values 
+// Fetches the needed asp values from the world gym form to facilitate sending a proper request to their server
 const fetch_daily_vars = async () => {
 
 // Change this to call it through a cors server. which will allow us to fetch request

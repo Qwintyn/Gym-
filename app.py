@@ -1,17 +1,19 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import Db, mysql.connector
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 myDb = Db.connect()
 
 @app.route('/Users')
 def get_all_users():
     my_cursor = myDb.cursor()
-    my_cursor.execute('SELECT * FROM USER')
+    my_cursor.execute('SELECT firstName, user_id FROM USER')
     users = my_cursor.fetchall()
     return users
 
-
+@app.route('/')
+def r():
+    return render_template('Index.html')
 @app.route('/User/<id>', methods=['GET'])
 def get_user(id):
     my_cursor = myDb.cursor()
